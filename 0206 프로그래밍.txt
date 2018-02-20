@@ -1,0 +1,89 @@
+
+import pandas as pd
+
+df = pd.read_csv("aaa.txt", sep=",", names = ["이름", "몸무게", "키"])
+
+for n, w, h in zip(df.이름, df.몸무게, df.키):
+    print(sum(df.몸무게))
+
+fdg
+import numpy as np
+
+arr = np.loadtxt("aaa.txt", delimiter=",")
+print(arr)
+arr2 = np.matmul(arr, arr.T)
+
+np.savetxt("bbb.txt", arr2, delimiter = '\t', fmt = "%d")
+
+
+#수업
+
+s = 'love is an open door! love is an open door! life can be so much more!'
+lst = s.split(" ")
+
+count_dict = dict()
+#키 =  단어, value, 등장 횟수
+for i in range(0, len(lst)):
+    
+    if lst[i] in count_dict.keys():
+        count_dict[lst[i]] += 1
+    else:
+        count_dict[lst[i]] = 1
+    
+print(count_dict)
+
+
+
+
+s = 'love is an open door! love is an open door! life can be so much more!'
+lst = s.split(" ")
+
+f = open("../Desktop/love.txt", "w")
+for i in range(0, len(lst)):
+    f.write(lst[i] + '\n')
+
+f.close()
+
+
+f = open("../Desktop/love.txt", "r")
+lines = f.readlines()
+for i in range(0,len(lines)):
+    lines[i] = lines[i][:-1] + '\t'
+
+print(lines)
+f.close()
+
+f = open("../Desktop/love.txt", 'w')
+for i in range(0,len(lines)):
+    f.write(lines[i])
+
+f.close()
+
+f = open("../Desktop/love.txt", 'a')
+f.write("\n귀차나ㅏㅏㅏ")
+f.close()
+
+
+def dynamic_fib(n, reservoir):
+    if n == 0 or n == 1:
+        reservoir[n] = 1
+        return 1, reservoir
+    else:
+        #있는지 체크, 있으면 사용
+        if (n-2) in reservoir:
+            fib_n_2 = reservoir[n-2]
+        else:
+            fib_n_2, reservoir = dynamic_fib(n-2, reservoir)
+        
+        if (n - 1) in reservoir:
+            fib_n_1 = reservoir[n-1]
+        else:
+            fib_n_1, resevoir = dynamic_fib(n-1, reservoir)
+            
+    reservoir[n] = fib_n_1 + fib_n_2
+    return fib_n_1 + fib_n_2, reservoir
+
+reservoir = {}
+output, reservoir = dynamic_fib(1111, reservoir)
+print(output)
+
